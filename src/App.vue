@@ -10,8 +10,27 @@
     WEIRD BUG WHEN USING H-FULL AND FLEX-GROW,
     CHILDREN DO NOT SIZE CORRECTLY WHEN USING PERCENT-BASED SIZING,
     -->
-    <main-content class="flex-grow h-5"></main-content>
-    <main-footer class=""></main-footer>
+    <main-content></main-content>
+    <main-footer>
+      <div
+        class="text-white text-xs flex flex-col justify-center items-center border-l px-2"
+      >
+        <span class="font-bold underline">DEVELOPER</span>
+        <span>Clarence Manuel</span>
+      </div>
+      <div
+        class="text-white text-xs flex flex-col justify-center items-center border-l px-2"
+      >
+        <span class="font-bold underline">UX/UI DESIGN</span>
+        <span>Joshua Neo Lee</span>
+        <span>Jay Deniel Rivera</span>
+      </div>
+      <div
+        class="text-white text-xs flex flex-col justify-center border-l px-2"
+      >
+        <span class="font-bold">© {{ new Date().getFullYear() }} MathXpr</span>
+      </div>
+    </main-footer>
     <slide direction="down">
       <main-menu v-if="menuOpen" id="menu" class=""></main-menu>
     </slide>
