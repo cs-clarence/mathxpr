@@ -6,7 +6,11 @@
       class="shadow-xl sticky top-0 z-10"
       :class="{ 'slide-up': menuOpen || hideHeader }"
     ></main-header>
-    <main-content class="flex-grow h-screen"></main-content>
+    <!--
+    WEIRD BUG WHEN USING H-FULL AND FLEX-GROW,
+    CHILDREN DO NOT SIZE CORRECTLY WHEN USING PERCENT-BASED SIZING,
+    -->
+    <main-content class="flex-grow h-5"></main-content>
     <main-footer class=""></main-footer>
     <slide direction="down">
       <main-menu v-if="menuOpen" id="menu" class=""></main-menu>
