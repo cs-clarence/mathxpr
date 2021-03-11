@@ -1,13 +1,16 @@
 <template>
-$END$
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
-<script>
-export default {
-name: "Main"
-}
+<script lang="tsx">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Main",
+  // setup() {},
+});
 </script>
 
-<style scoped>
-
-</style>
+<style lang="css" scoped></style>

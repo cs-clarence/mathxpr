@@ -1,13 +1,14 @@
 <template>
-$END$
+  <div></div>
 </template>
 
-<script>
-export default {
-name: "NotFoundGeneric"
-}
+<script lang="tsx">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "NotFoundGeneric",
+  // setup() {},
+});
 </script>
 
-<style scoped>
-
-</style>
+<style lang="scss" scoped></style>

@@ -1,26 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="main-container">
+    <main-header @menu-open="menuOpen = $event"></main-header>
+    <main-content class="flex-grow"></main-content>
+    <main-footer></main-footer>
+    <slide-down>
+      <main-menu v-if="menuOpen" id="menu"></main-menu>
+    </slide-down>
+  </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import MainHeader from "@/components/partials/Header.vue";
+import MainFooter from "@/components/partials/Footer.vue";
+import MainContent from "@/components/partials/Main.vue";
+import MainMenu from "@/components/partials/Menu.vue";
+import SlideDown from "@/components/transitions/SlideDown.vue";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+export default defineComponent({
+  name: "App",
+  components: { SlideDown, MainMenu, MainHeader, MainFooter, MainContent },
+  setup() {
+    const menuOpen = ref(false);
+    return {
+      menuOpen,
+    };
+  },
+});
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+#main-container {
+  @apply flex flex-col;
+  min-height: 100vh;
+}
+
+html {
+  position: relative;
+  background-color: #e4e4e4;
 }
 </style>
