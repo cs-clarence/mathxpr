@@ -1,7 +1,7 @@
 <template>
   <div
-    class="menu-icon flex flex-col z-10 rounded-full"
-    :class="{ open, 'bg-black-semi-trans': open }"
+    class="menu-icon flex flex-col pointer-events-auto"
+    :class="{ open }"
     @click="$emit('open', (open = !open))"
   >
     <span class="menu-bar"></span>
@@ -55,18 +55,6 @@ export default defineComponent({
   transform: translateX(-100%);
   opacity: 0;
 }
-
-.bg-black-semi-trans {
-  background-color: rgba(black, 0.25);
-}
-
-.open {
-  position: fixed;
-  margin-left: -32px;
-  top: 67%;
-  left: 50%;
-}
-
 //.open .menu-bar {
 //  @apply bg-red-600;
 //}

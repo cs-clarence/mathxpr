@@ -12,6 +12,7 @@
         type="text"
         placeholder="Search"
         class="bg-transparent text-white w-full h-full ml-3"
+        autocomplete="off"
       />
     </form>
   </div>
