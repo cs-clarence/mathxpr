@@ -11,7 +11,7 @@
         id="search-bar"
         type="text"
         placeholder="Search"
-        class="bg-transparent text-white w-full h-full ml-3"
+        class="bg-transparent text-white w-full h-full ml-3 focus:outline-none"
         autocomplete="off"
       />
     </form>

@@ -1,12 +1,12 @@
 <template>
   <div
-    class="menu-icon flex flex-col pointer-events-auto"
+    class="menu-icon flex flex-col pointer-events-auto cursor-pointer"
     :class="{ open }"
     @click="$emit('open', (open = !open))"
   >
-    <span class="menu-bar"></span>
-    <span class="menu-bar"></span>
-    <span class="menu-bar"></span>
+    <span class="menu-bar rounded"></span>
+    <span class="menu-bar rounded"></span>
+    <span class="menu-bar rounded"></span>
   </div>
 </template>
 

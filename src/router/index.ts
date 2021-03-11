@@ -6,15 +6,16 @@ import {
 } from "vue-router";
 
 import Home from "@/components/pages/Home.vue";
+import NotFoundGeneric from "@/components/pages/NotFoundGeneric.vue";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    // {
-    //   name: "notfound",
-    //   path: "/:notFound(.*)",
-    //   components: { default: NotFoundGeneric },
-    // },
+    {
+      name: "notfound",
+      path: "/:notFound(.*)",
+      components: { default: NotFoundGeneric },
+    },
     {
       name: "home",
       path: "/",

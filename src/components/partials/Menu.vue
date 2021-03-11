@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen absolute bg-white top-0">
+  <div class="w-screen h-screen fixed bg-white top-0">
     <search-bar
       class="rounded-full m-2 overflow-hidden focus-within:border-purple-300 border-4 box-border container mx-auto"
     ></search-bar>
