@@ -1,5 +1,7 @@
 <template>
-  <div class="background container mx-auto">
+  <div
+    class="background container mx-auto rounded-full m-2 overflow-hidden focus-within:border-purple-300 border-4 container mx-3 sm:mx-auto"
+  >
     <form class="p-3 flex flex-row justify-center items-center text-base">
       <label for="search-bar">
         <img

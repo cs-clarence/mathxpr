@@ -1,12 +1,20 @@
 <template>
   <div
-    class="rounded-md bg-purple-300 square-128 relative shadow-xl overflow-hidden"
+    class="
+    rounded-md bg-purple-300 square-128 relative shadow-xl overflow-hidden
+    cursor-pointer
+    "
   >
     <div
-      class="bg-white h-6 md:h-10 flex flex-col justify-center md:text-lg text-center absolute bottom-0 w-full md:w-max p-3 md:rounded-tr-md shadow-xl"
+      class="
+      bg-white h-6 md:h-10 flex flex-col justify-center md:text-lg text-center
+      absolute bottom-0 w-full md:w-max p-3 md:rounded-tr-md shadow-xl
+      "
       v-if="$slots.default"
     >
-      <slot></slot>
+      <span class="uppercase">
+        <slot></slot>
+      </span>
     </div>
   </div>
 </template>
@@ -21,7 +29,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .square-128 {
-  width: 128px;
+  width: 100%;
   height: 128px;
   @screen md {
     width: 100%;

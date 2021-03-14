@@ -1,7 +1,13 @@
 <template>
   <div>
     <div
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-10 justify-items-center justify-center items-center content-center mx-auto"
+      class="
+      grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3
+      gap-5 sm:gap-10
+      justify-center content-center
+      justify-items-center
+      mx-auto
+      "
     >
       <solver-preview v-for="i of 3" :key="i">Solver {{ i }}</solver-preview>
     </div>
