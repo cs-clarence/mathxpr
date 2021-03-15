@@ -1,20 +1,23 @@
 <template>
-  <div class="relative img-container">
+  <div class="relative img-container w-full h-full">
     <img
       v-if="showImage ? showImage : (showImage = load)"
       v-bind="$attrs"
       @load="imageLoaded = true"
+      class="w-full h-full"
     />
     <transition leave-to-class="loaded">
       <div
         v-if="!imageLoaded"
         id="loading-screen"
-        class="flex flex-col justify-center items-center"
+        class="flex flex-col justify-center items-center 
+        object-cover object-center bg-purple-400
+        "
       >
         <img
           id="spinner"
           alt="spinner image"
-          src="../../assets/images/svg-loaders/three-dots.svg"
+          src="../../assets/images/svg-loaders/grid.svg"
         />
       </div>
     </transition>
@@ -56,7 +59,6 @@ export default defineComponent({
 }
 
 #loading-screen {
-  background-color: #143042;
   position: absolute;
   top: 0;
   width: 100%;

@@ -7,6 +7,7 @@ import {
 
 import Home from "@/components/pages/Home.vue";
 import NotFoundGeneric from "@/components/pages/NotFoundGeneric.vue";
+import Solvers from "@/components/pages/Solvers.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -22,11 +23,11 @@ const router = createRouter({
       alias: "/home",
       components: { default: Home },
     },
-    // {
-    //   name: "about",
-    //   path: "/about",
-    //   components: { default: About },
-    // },
+    {
+      name: "solvers",
+      path: "/solvers",
+      components: { default: Solvers },
+    },
     // {
     //   name: "contact",
     //   path: "/contact",
@@ -40,6 +41,7 @@ const router = createRouter({
     // { path: "/", redirect: { name: "home" } },
   ],
   scrollBehavior(to) {
+    // if there is a hash in the url
     if (to.hash)
       return {
         selector: to.hash,

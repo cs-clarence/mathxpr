@@ -18,7 +18,6 @@ export default defineComponent({
     direction: {
       type: String as PropType<"down" | "up" | "left" | "right">,
       default: "down",
-      require: true,
     },
   },
 });

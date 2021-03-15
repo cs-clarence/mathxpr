@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center items-center h-full">
+  <div class="flex flex-col justify-center items-center flex-grow">
     <div
       class="
       not-found bg-red-500 rounded text-white p-10 flex flex-col justify-center

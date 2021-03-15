@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <router-view name="solver"></router-view>
+  </div>
 </template>
 
 <script lang="tsx">
