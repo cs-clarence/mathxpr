@@ -5,15 +5,17 @@ import {
   RouteLocationNormalized,
 } from "vue-router";
 
-import Home from "@/components/pages/Home.vue";
-import NotFoundGeneric from "@/components/pages/NotFoundGeneric.vue";
-import Solvers from "@/components/pages/Solvers.vue";
+import { fetchSolverRoutes } from "@/components/pages/solvers";
+
+const Home = () => import("@/components/pages/Home.vue");
+const NotFoundGeneric = () => import("@/components/pages/NotFoundGeneric.vue");
+const Solvers = () => import("@/components/pages/Solvers.vue");
+const SolverGeneric = () => import("@/components/pages/SolverGeneric.vue");
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      name: "notfound",
       path: "/:notFound(.*)",
       components: { default: NotFoundGeneric },
     },
@@ -28,11 +30,11 @@ const router = createRouter({
       path: "/solvers",
       components: { default: Solvers },
     },
-    // {
-    //   name: "contact",
-    //   path: "/contact",
-    //   components: { default: Contact },
-    // },
+    {
+      path: "/solvers",
+      components: { default: SolverGeneric },
+      children: fetchSolverRoutes(),
+    },
     // {
     //   name: "projects",
     //   path: "/projects",
@@ -52,18 +54,27 @@ const router = createRouter({
   },
 });
 
+// router.beforeEach()
+
+function toTitleCase(str: string) {
+  return str
+    .split("_")
+    .map((str) => str.trim()[0].toUpperCase() + str.slice(1))
+    .join(" ");
+}
+
 router.afterEach(
   (
     to: RouteLocationNormalized,
     from: RouteLocationNormalized,
     failure,
   ): void => {
+    // console.log(to.params);
     if (!isNavigationFailure(failure)) {
       const title: string = to.path.split("/").pop() ?? "ERROR";
-      const fixedTitle =
-        to.path == "/" ? "" : title[0].toUpperCase() + title.slice(1);
+      const fixedTitle = to.path == "/" ? "" : toTitleCase(title);
 
-      document.title = fixedTitle ? fixedTitle + " - MathXpr" : "MathXpr";
+      document.title = fixedTitle ? fixedTitle + " | MathXpr" : "MathXpr";
     }
   },
 );

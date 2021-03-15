@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>Truth Table Solver</div>
 </template>
 
 <script lang="tsx">

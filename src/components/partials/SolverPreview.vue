@@ -6,20 +6,34 @@
     "
   >
     <router-link :to="to">
-      <lazy-image :src="imgSrc" load />
-    </router-link>
+      <div class="w-full h-full invisible sm:visible">
+        <lazy-image :src="prevImg" v-if="prevImg" load />
+      </div>
 
-    <div
-      class="
-      bg-white h-6 md:h-10 flex flex-col justify-center md:text-lg text-center
-      absolute bottom-0 w-full md:w-max p-3 md:rounded-tr-md shadow-xl
+      <div
+        v-if="icon"
+        class="
+        absolute flex flex-col justify-start items-center top-0
+        sm:items-end
+        w-full h-full pointer-events-none
+        "
+      >
+        <img id="icon" class="w-full h-full sm:w-20 sm:h-20 px-4" :src="icon" />
+      </div>
+
+      <div
+        class="
+      bg-white h-6 md:h-10 flex flex-col justify-center text-xs sm:text-sm md:text-base
+      text-center absolute bottom-0 w-full sm:w-max p-3 sm:rounded-tr-md shadow-xl
+      opacity-50 sm:opacity-100
       "
-      v-if="$slots.default"
-    >
-      <span class="uppercase">
-        <slot></slot>
-      </span>
-    </div>
+        v-if="$slots.default"
+      >
+        <span class="uppercase">
+          <slot></slot>
+        </span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -33,7 +47,11 @@ export default defineComponent({
     LazyImage,
   },
   props: {
-    imgSrc: {
+    prevImg: {
+      type: String as PropType<string>,
+      required: true,
+    },
+    icon: {
       type: String as PropType<string>,
       required: true,
     },
@@ -49,7 +67,7 @@ export default defineComponent({
 .preview {
   width: 100%;
   height: 128px;
-  @screen md {
+  @screen sm {
     width: 100%;
     height: 256px;
   }

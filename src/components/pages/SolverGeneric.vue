@@ -1,6 +1,7 @@
 <template>
   <div>
-    <router-view name="solver"></router-view>
+    SolverGeneric
+    <router-view></router-view>
   </div>
 </template>
 
