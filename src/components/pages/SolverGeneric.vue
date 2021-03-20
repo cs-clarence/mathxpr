@@ -1,6 +1,5 @@
 <template>
   <div>
-    SolverGeneric
     <router-view></router-view>
   </div>
 </template>

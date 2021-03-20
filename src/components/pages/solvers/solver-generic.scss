@@ -1,0 +1,121 @@
+input,
+select {
+  @apply border-transparent;
+  @apply border-2;
+  @apply focus:outline-none;
+  @apply focus:border-purple-500;
+  @apply rounded-md;
+  @apply bg-white;
+  height: 40px;
+  overflow: hidden;
+}
+
+form,
+fieldset {
+  @apply flex;
+  @apply flex-col;
+  @apply justify-center;
+  @apply items-center;
+  @apply rounded-md;
+  @apply p-6;
+  @apply relative;
+}
+
+form {
+  @apply border-4;
+  @apply border-purple-300;
+}
+form > #title {
+  @apply text-black;
+  @apply shadow-md;
+  @apply font-bold;
+  @apply sm:text-xl;
+  @apply bg-purple-200;
+  @apply p-2;
+  @apply px-3;
+  @apply rounded-md;
+  @apply absolute;
+  @apply -top-8;
+}
+
+.group {
+  @apply flex;
+  @apply flex-col;
+  @apply h-20;
+  @screen sm {
+    height: max-content;
+  }
+  @apply sm:flex-row;
+  @apply flex-wrap;
+  @apply items-center;
+  @apply justify-center;
+  @apply w-full;
+}
+
+.group > * {
+  @apply mx-2;
+  @apply px-1;
+  @apply flex-grow;
+  flex-basis: 1%;
+}
+
+.ph-center::placeholder {
+  @apply text-center;
+}
+
+.ph-left::placeholder {
+  @apply text-left;
+}
+
+.ph-right::placeholder {
+  @apply text-right;
+}
+form,
+fieldset {
+  & > * {
+    @apply m-2;
+  }
+}
+
+fieldset > .group {
+  @apply w-full;
+  & > label {
+    text-align: right;
+  }
+}
+
+input,
+select {
+  &:invalid {
+    @apply border-red-500;
+  }
+  &:valid {
+    @apply border-green-500;
+  }
+}
+
+button {
+  @apply bg-blue-400;
+  @apply text-white;
+  @apply shadow-md;
+  @apply rounded-md;
+  @apply border-2;
+  @apply border-solid;
+  @apply border-transparent;
+  @apply hover:border-purple-500;
+  @apply p-1;
+  @apply px-2;
+  @apply text-sm;
+}
+
+table {
+  //   @apply bg-purple-300;
+  @apply rounded-md;
+}
+td,
+th {
+  @apply p-3;
+  @apply border-black;
+  @apply border-2;
+  @apply text-center;
+}

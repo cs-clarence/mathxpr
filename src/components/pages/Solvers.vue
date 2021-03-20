@@ -14,7 +14,7 @@
         :key="index"
         :prevImg="solver.previewImage"
         :icon="solver.icon"
-        to="/solvers/truth_table"
+        :to="`/solvers/${solver.path}`"
         >{{ solver.solverName }}
       </solver-preview>
     </div>

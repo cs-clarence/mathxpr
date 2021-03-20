@@ -7,7 +7,7 @@ import {
 
 import { fetchSolverRoutes } from "@/components/pages/solvers";
 
-const Home = () => import("@/components/pages/Home.vue");
+// const Home = () => import("@/components/pages/Home.vue");
 const NotFoundGeneric = () => import("@/components/pages/NotFoundGeneric.vue");
 const Solvers = () => import("@/components/pages/Solvers.vue");
 const SolverGeneric = () => import("@/components/pages/SolverGeneric.vue");
@@ -22,8 +22,9 @@ const router = createRouter({
     {
       name: "home",
       path: "/",
-      alias: "/home",
-      components: { default: Home },
+      redirect: "/solvers",
+      //   alias: "/home",
+      //   components: { default: Home },
     },
     {
       name: "solvers",

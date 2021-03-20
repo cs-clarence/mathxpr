@@ -183,7 +183,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "Overpass",
+        // "Overpass",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",

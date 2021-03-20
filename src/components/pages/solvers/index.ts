@@ -1,6 +1,8 @@
 import { RouteRecordRaw } from "vue-router";
 const TruthTableSolver = () =>
   import("@/components/pages/solvers/TruthTableSolver.vue");
+const ApportionmentSolver = () =>
+  import("@/components/pages/solvers/ApportionmentSolver.vue");
 
 type SolverMeta = {
   icon: string;
@@ -29,6 +31,18 @@ const SolverRoutes: SolverRoute[] = [
     },
     components: {
       default: TruthTableSolver,
+    },
+  },
+  {
+    path: "apportionment",
+    name: "apportionment",
+    icon: "favicon.svg",
+    previewImage: "favicon.svg",
+    get solverName() {
+      return toTitleCase(this.path);
+    },
+    components: {
+      default: ApportionmentSolver,
     },
   },
 ];
