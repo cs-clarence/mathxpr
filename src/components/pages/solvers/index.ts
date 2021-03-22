@@ -1,8 +1,8 @@
 import { RouteRecordRaw } from "vue-router";
-const TruthTableSolver = () =>
-  import("@/components/pages/solvers/TruthTableSolver.vue");
-const ApportionmentSolver = () =>
-  import("@/components/pages/solvers/ApportionmentSolver.vue");
+// const TruthTableSolver = () =>
+//   import("@/components/pages/solvers/TruthTableSolver.vue");
+// const ApportionmentSolver = () =>
+//   import("@/components/pages/solvers/ApportionmentSolver.vue");
 const SimpleInterest = () =>
   import("@/components/pages/solvers/SimpleInterest.vue");
 const CompountInterest = () =>
@@ -25,30 +25,30 @@ function toTitleCase(str: string) {
 }
 
 const SolverRoutes: SolverRoute[] = [
-  {
-    path: "truth_table",
-    name: "truth_table",
-    icon: "favicon.svg",
-    previewImage: "favicon.svg",
-    get solverName() {
-      return toTitleCase(this.path);
-    },
-    components: {
-      default: TruthTableSolver,
-    },
-  },
-  {
-    path: "apportionment",
-    name: "apportionment",
-    icon: "favicon.svg",
-    previewImage: "favicon.svg",
-    get solverName() {
-      return toTitleCase(this.path);
-    },
-    components: {
-      default: ApportionmentSolver,
-    },
-  },
+  // {
+  //   path: "truth_table",
+  //   name: "truth_table",
+  //   icon: "favicon.svg",
+  //   previewImage: "favicon.svg",
+  //   get solverName() {
+  //     return toTitleCase(this.path);
+  //   },
+  //   components: {
+  //     default: TruthTableSolver,
+  //   },
+  // },
+  // {
+  //   path: "apportionment",
+  //   name: "apportionment",
+  //   icon: "favicon.svg",
+  //   previewImage: "favicon.svg",
+  //   get solverName() {
+  //     return toTitleCase(this.path);
+  //   },
+  //   components: {
+  //     default: ApportionmentSolver,
+  //   },
+  // },
   {
     path: "compound_interest",
     name: "compound_interest",
