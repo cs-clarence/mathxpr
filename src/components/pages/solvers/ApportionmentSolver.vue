@@ -33,6 +33,7 @@
             required
             v-model="nStates"
             min="0"
+            @input="cellMatrixModel.nRows = parseInt($event.target.value) + 1"
           />
         </div>
         <data-table @ready="$event.model = cellMatrixModel"></data-table>
@@ -46,6 +47,7 @@ import {
   createCellMatrixModel,
 } from "@/components/partials/DataTable";
 import { defineComponent, ref, reactive } from "vue";
+import { headers } from "./apportionment-methods";
 export default defineComponent({
   components: { DataTable },
   name: "ApportionmentSolver",
@@ -55,11 +57,8 @@ export default defineComponent({
     const nStates = ref("5");
     const cellMatrixModel = reactive(
       createCellMatrixModel({
-        rows: 10,
-        cols: [
-          { data: "Header", headMeta: { data: "Hello World" } },
-          { data: "Header", headMeta: { data: "Hello World" } },
-        ],
+        rows: parseInt(nStates.value),
+        cols: headers["hamilton"],
       }),
     );
 

@@ -24,8 +24,8 @@ export interface DataHeaderCellModel extends DataCellModel {
 export class DataCellMatrix {
   constructor(
     private _bodyCells?: DataCellModel[][],
-    private _colHeaderCells?: DataHeaderCellModel[],
-    private _rowHeaderCells?: DataHeaderCellModel[],
+    private _colHeaderCells?: DataHeaderCellModel[] | number,
+    private _rowHeaderCells?: DataHeaderCellModel[] | number,
   ) {}
   set bodyCells(_bodyCells: DataCellModel[][]) {
     this._bodyCells = _bodyCells;
@@ -46,11 +46,24 @@ export class DataCellMatrix {
     return this._colHeaderCells as DataHeaderCellModel[];
   }
   get nCols() {
-    return (
-      (this._rowHeaderCells ? 1 : 0) +
-      (this._bodyCells ? this.bodyCells[0].length : 0)
-    );
+    if (typeof this._colHeaderCells === "number") {
+      return this._colHeaderCells;
+    } else {
+      return (
+        (this._rowHeaderCells ? 1 : 0) +
+        (this._colHeaderCells?.length ??
+          (this._bodyCells ? this._bodyCells[0]?.length ?? 0 : 0))
+      );
+    }
   }
+  set nCols(n: number) {
+    if (this.nCols > n) {
+      this.decreaseRows(this.nCols - n);
+    } else {
+      this.increaseRows(n - this.nCols);
+    }
+  }
+
   get nRows() {
     let rows = this._colHeaderCells ? 1 : 0;
     if (this._bodyCells?.length) {
@@ -59,26 +72,56 @@ export class DataCellMatrix {
 
     return rows;
   }
+
+  set nRows(n: number) {
+    // console.log(`nRows: ${this.nRows}`);
+    // console.log(n);
+    if (this.nRows > n) {
+      this.decreaseRows(this.nRows - n);
+    } else {
+      this.increaseRows(n - this.nRows);
+    }
+  }
   increaseRows(rows = 1, prototype?: DataCellModel) {
     for (let i = 0; i < rows; ++i) {
-      if (this._bodyCells) {
-        this._bodyCells.push(
-          fill(Array(this._bodyCells[0].length), prototype ?? {}),
-        );
+      if (typeof this._colHeaderCells === "number") {
+        const model = prototype ?? {};
+        if (this._bodyCells) {
+          this._bodyCells.push(
+            fill(
+              Array(this._colHeaderCells ?? this._bodyCells[0]?.length) ?? 0,
+              model,
+            ),
+          );
+        }
+      } else {
+        if (this._bodyCells) {
+          if (this._colHeaderCells) {
+            this._bodyCells.push(this._colHeaderCells.map((el) => el.headMeta));
+          }
+        }
       }
-      if (this._colHeaderCells) {
-        this._colHeaderCells.push({ headMeta: {} });
+      if (typeof this._rowHeaderCells === "number") {
+        this._rowHeaderCells++;
+      } else {
+        if (this._rowHeaderCells) {
+          this._rowHeaderCells.push({ headMeta: {} });
+        }
       }
     }
   }
   decreaseRows(rows = 1) {
-    if (this._bodyCells) {
-      for (let i = 0; i < rows && this._bodyCells.length !== 0; ++i) {
+    for (let i = 0; i < rows; ++i) {
+      if (this._bodyCells) {
         this._bodyCells.pop();
       }
-    }
-    if (this._colHeaderCells) {
-      this._colHeaderCells.pop();
+      if (typeof this._rowHeaderCells === "number") {
+        --this._rowHeaderCells;
+      } else {
+        if (this._rowHeaderCells) {
+          this._rowHeaderCells.pop();
+        }
+      }
     }
   }
   increaseColumns(cols = 1, prototype?: DataCellModel) {
@@ -89,8 +132,12 @@ export class DataCellMatrix {
         }
       }
     }
-    if (this._rowHeaderCells) {
-      this._rowHeaderCells.push({ headMeta: {} });
+    if (typeof this._colHeaderCells === "number") {
+      ++this._colHeaderCells;
+    } else {
+      if (this._colHeaderCells) {
+        this._colHeaderCells.push({ headMeta: {} });
+      }
     }
   }
   decreaseColumns(cols = 1) {
@@ -101,8 +148,25 @@ export class DataCellMatrix {
         }
       }
     }
-    if (this._rowHeaderCells) {
-      this._rowHeaderCells.pop();
+    if (typeof this._colHeaderCells === "number") {
+      --this._colHeaderCells;
+    } else {
+      if (this._colHeaderCells) {
+        this._colHeaderCells.pop();
+      }
+    }
+  }
+  retrieveContent(headerKey: number | string) {
+    if (typeof headerKey === "number") {
+      return this._bodyCells?.map((el) => el[headerKey]);
+    } else if (this._colHeaderCells) {
+      if (typeof this._colHeaderCells !== "number") {
+        for (const [index, el] of this._colHeaderCells.entries()) {
+          if (el.data === headerKey) {
+            return this._bodyCells?.map((el) => el[index]);
+          }
+        }
+      }
     }
   }
   clone() {

@@ -3,6 +3,10 @@ const TruthTableSolver = () =>
   import("@/components/pages/solvers/TruthTableSolver.vue");
 const ApportionmentSolver = () =>
   import("@/components/pages/solvers/ApportionmentSolver.vue");
+const SimpleInterest = () =>
+  import("@/components/pages/solvers/SimpleInterest.vue");
+const CompountInterest = () =>
+  import("@/components/pages/solvers/CompoundInterest.vue");
 
 type SolverMeta = {
   icon: string;
@@ -43,6 +47,30 @@ const SolverRoutes: SolverRoute[] = [
     },
     components: {
       default: ApportionmentSolver,
+    },
+  },
+  {
+    path: "compound_interest",
+    name: "compound_interest",
+    icon: "favicon.svg",
+    previewImage: "favicon.svg",
+    get solverName() {
+      return toTitleCase(this.path);
+    },
+    components: {
+      default: CompountInterest,
+    },
+  },
+  {
+    path: "simple_interest",
+    name: "simple_interest",
+    icon: "favicon.svg",
+    previewImage: "favicon.svg",
+    get solverName() {
+      return toTitleCase(this.path);
+    },
+    components: {
+      default: SimpleInterest,
     },
   },
 ];

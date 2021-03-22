@@ -39,6 +39,12 @@ form > #title {
 }
 
 .group {
+  & > * {
+    @apply mx-2;
+    @apply px-1;
+    @apply flex-grow;
+    flex-basis: 1%;
+  }
   @apply flex;
   @apply flex-col;
   @apply h-20;
@@ -50,13 +56,6 @@ form > #title {
   @apply items-center;
   @apply justify-center;
   @apply w-full;
-}
-
-.group > * {
-  @apply mx-2;
-  @apply px-1;
-  @apply flex-grow;
-  flex-basis: 1%;
 }
 
 .ph-center::placeholder {
