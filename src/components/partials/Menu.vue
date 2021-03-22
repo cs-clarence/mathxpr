@@ -10,7 +10,7 @@
           @click="$emit('select')"
           :style="{ backgroundColor: 'rgba(0, 0, 0, 0.25)' }"
         >
-          <router-link :to="item.path">
+          <router-link :to="`/solvers/${item.path}`">
             {{ item.solverName }}
           </router-link>
         </p>
