@@ -2,7 +2,7 @@
   <div
     class="menu-icon flex flex-col pointer-events-auto cursor-pointer"
     :class="{ open }"
-    @click="$emit('open', (open = !open))"
+    @click="$emit('open', !open)"
   >
     <span class="menu-bar rounded"></span>
     <span class="menu-bar rounded"></span>
@@ -11,19 +11,26 @@
 </template>
 
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "MenuButton",
+  props: {
+    open: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+      required: false,
+    },
+  },
   emit: {
     open: null,
   },
-  setup() {
-    const open = ref(false);
-    return {
-      open,
-    };
-  },
+  // setup() {
+  //   const open = ref(false);
+  //   return {
+  //     open,
+  //   };
+  // },
 });
 </script>
 

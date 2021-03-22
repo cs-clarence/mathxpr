@@ -20,7 +20,7 @@
             name="principal-amount"
             type="number"
             :disabled="get === 'P'"
-            v-model="principalAmount"
+            v-model.number="principalAmount"
             step="any"
           />
         </div>
@@ -31,7 +31,7 @@
             name="rate-of-interest"
             type="number"
             :disabled="get === 'r'"
-            v-model="rateOfInterest"
+            v-model.number="rateOfInterest"
             step="any"
           />
         </div>
@@ -42,7 +42,7 @@
             name="time"
             type="number"
             :disabled="get === 't'"
-            v-model="time"
+            v-model.number="time"
             step="any"
           />
         </div>
@@ -53,7 +53,7 @@
             name="interest"
             type="number"
             :disabled="get === 'I'"
-            v-model="interest"
+            v-model.number="interest"
             step="any"
           />
         </div>
@@ -63,7 +63,7 @@
             id="future-value"
             name="future-value"
             type="number"
-            v-model="futureValue"
+            v-model.number="futureValue"
             step="any"
             disabled
           />
@@ -90,36 +90,33 @@ export default defineComponent({
       // },
       I() {
         interest.value = (
-          parseFloat(principalAmount.value) *
-          (parseFloat(rateOfInterest.value) / 100) *
-          parseFloat(time.value)
+          principalAmount.value *
+          (rateOfInterest.value / 100) *
+          time.value
         ).toFixed(2);
       },
       t() {
         time.value = (
-          parseFloat(interest.value) /
-          (parseFloat(principalAmount.value) *
-            (parseFloat(rateOfInterest.value) / 100))
+          interest.value /
+          (principalAmount.value * (rateOfInterest.value / 100))
         ).toFixed(2);
       },
       r() {
         rateOfInterest.value = (
-          (parseFloat(interest.value) /
-            (parseFloat(principalAmount.value) * parseFloat(time.value))) *
+          (interest.value / (principalAmount.value * time.value)) *
           100
         ).toFixed(2);
       },
       F() {
         futureValue.value = (
-          parseFloat(principalAmount.value) *
-          (1 +
-            (parseFloat(rateOfInterest.value) / 100) * parseFloat(time.value))
+          principalAmount.value *
+          (1 + (rateOfInterest.value / 100) * time.value)
         ).toFixed(2);
       },
       P() {
         principalAmount.value = (
-          parseFloat(interest.value) /
-          ((parseFloat(rateOfInterest.value) / 100) * parseFloat(time.value))
+          interest.value /
+          ((rateOfInterest.value / 100) * time.value)
         ).toFixed(2);
       },
     };

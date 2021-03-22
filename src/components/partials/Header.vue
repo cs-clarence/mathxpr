@@ -10,7 +10,8 @@
         >
           <menu-button
             class="p-3 w-16 h-16"
-            @open="$emit('menuOpen', (menuOpen = !menuOpen))"
+            :open="menuOpen"
+            @open="$emit('menuOpen', !menuOpen)"
           ></menu-button>
         </div>
       </div>
@@ -19,7 +20,7 @@
 </template>
 
 <script lang="tsx">
-import { defineComponent, ref } from "vue";
+import { defineComponent, PropType } from "vue";
 import MenuButton from "@/components/partials/MenuButton.vue";
 import Logo from "@/components/partials/Logo.vue";
 
@@ -29,12 +30,15 @@ export default defineComponent({
   emit: {
     menuOpen: null,
   },
-  setup() {
-    const menuOpen = ref(false);
-    return {
-      menuOpen,
-    };
+  props: {
+    menuOpen: {
+      type: Boolean as PropType<boolean>,
+      required: false,
+      default: false,
+    },
   },
+  // setup() {
+  // },
 });
 </script>
 

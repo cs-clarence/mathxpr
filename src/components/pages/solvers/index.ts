@@ -9,10 +9,10 @@ const CompountInterest = () =>
   import("@/components/pages/solvers/CompoundInterest.vue");
 
 type SolverMeta = {
-  icon: string;
-  previewImage: string;
+  icon?: string;
+  previewImage?: string;
   path: string;
-  readonly solverName: string;
+  solverName: string;
 };
 
 type SolverRoute = RouteRecordRaw & SolverMeta;

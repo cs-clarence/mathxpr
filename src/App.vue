@@ -3,6 +3,7 @@
     <main-header
       id="header"
       @menu-open="menuOpenHandler"
+      :menu-open="menuOpen"
       class="shadow-xl sticky top-0 z-10"
       :class="{ 'slide-up': menuOpen || hideHeader }"
     ></main-header>
@@ -32,7 +33,11 @@
       </div>
     </main-footer>
     <slide direction="down">
-      <main-menu v-if="menuOpen" id="menu" class=""></main-menu>
+      <main-menu
+        v-if="menuOpen"
+        id="menu"
+        @select="menuOpenHandler"
+      ></main-menu>
     </slide>
   </div>
 </template>

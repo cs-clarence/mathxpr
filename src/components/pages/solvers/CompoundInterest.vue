@@ -20,7 +20,7 @@
             name="principal-amount"
             type="number"
             :disabled="get === 'P'"
-            v-model="principalAmount"
+            v-model.number="principalAmount"
             step="any"
           />
         </div>
@@ -31,7 +31,7 @@
             name="rate-of-interest"
             type="number"
             :disabled="get === 'r'"
-            v-model="rateOfInterest"
+            v-model.number="rateOfInterest"
             step="any"
           />
         </div>
@@ -43,7 +43,7 @@
             min="0"
             name="compounding-period-other"
             id="compounding-period-other"
-            v-model="compoundingPeriod"
+            v-model.number="compoundingPeriod"
           />
         </div>
         <div class="group">
@@ -53,7 +53,7 @@
             name="time"
             type="number"
             :disabled="get === 't'"
-            v-model="time"
+            v-model.number="time"
             step="any"
           />
         </div>
@@ -64,7 +64,7 @@
             id="future-value"
             name="future-value"
             type="number"
-            v-model="futureValue"
+            v-model.number="futureValue"
             step="any"
             :disabled="get === 'A'"
           />
@@ -80,57 +80,41 @@ export default defineComponent({
   name: "CompoundInterest",
   setup() {
     const get = ref("A");
-    const futureValue = ref("0");
-    const interest = ref("0");
-    const rateOfInterest = ref("0");
-    const principalAmount = ref("0");
-    const time = ref("0");
-    const compoundingPeriod = ref("1");
+    const futureValue = ref(0);
+    const interest = ref(0);
+    const rateOfInterest = ref(0);
+    const principalAmount = ref(0);
+    const time = ref(0);
+    const compoundingPeriod = ref(0);
     const methods = {
       t() {
         time.value = (
-          Math.log(
-            parseFloat(futureValue.value) / parseFloat(principalAmount.value),
-          ) /
-          Math.log(
-            1 +
-              parseFloat(rateOfInterest.value) /
-                100 /
-                parseFloat(compoundingPeriod.value),
-          ) /
-          parseFloat(compoundingPeriod.value)
+          Math.log(futureValue.value / principalAmount.value) /
+          Math.log(1 + rateOfInterest.value / 100 / compoundingPeriod.value) /
+          compoundingPeriod.value
         ).toFixed(2);
       },
       r() {
         rateOfInterest.value =
           (
-            parseFloat(compoundingPeriod.value) *
-            ((parseFloat(futureValue.value) /
-              parseFloat(principalAmount.value)) **
-              (1 /
-                (parseFloat(compoundingPeriod.value) *
-                  parseFloat(time.value))) -
+            compoundingPeriod.value *
+            ((futureValue.value / principalAmount.value) **
+              (1 / (compoundingPeriod.value * time.value)) -
               1)
           ).toFixed(2) * 100;
       },
       A() {
         futureValue.value = (
-          parseFloat(principalAmount.value) *
-          (1 +
-            parseFloat(rateOfInterest.value) /
-              100 /
-              parseFloat(compoundingPeriod.value)) **
-            (parseFloat(compoundingPeriod.value) * parseFloat(time.value))
+          principalAmount.value *
+          (1 + rateOfInterest.value / 100 / compoundingPeriod.value) **
+            (compoundingPeriod.value * time.value)
         ).toFixed(2);
       },
       P() {
         principalAmount.value = (
-          parseFloat(futureValue.value) /
-          (1 +
-            parseFloat(rateOfInterest.value) /
-              100 /
-              parseFloat(compoundingPeriod.value)) **
-            (parseFloat(compoundingPeriod.value) * parseFloat(time.value))
+          futureValue.value /
+          (1 + rateOfInterest.value / 100 / compoundingPeriod.value) **
+            (compoundingPeriod.value * time.value)
         ).toFixed(2);
       },
     };

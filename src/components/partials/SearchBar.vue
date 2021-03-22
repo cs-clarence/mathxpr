@@ -5,7 +5,10 @@
     focus-within:border-purple-300 border-4 mx-4 sm:mx-auto
     "
   >
-    <form class="p-3 flex flex-row justify-center items-center text-base">
+    <form
+      class="p-3 flex flex-row justify-center items-center text-base"
+      @submit.prevent=""
+    >
       <label for="search-bar">
         <img
           src="../../assets/images/magnifying-glass.svg"
@@ -13,6 +16,11 @@
         />
       </label>
       <input
+        @input="
+          $emit('update:modelValue', $event.target.value),
+            $emit('input', $event.target.value)
+        "
+        :value="modelValue"
         id="search-bar"
         type="text"
         placeholder="Search"
@@ -24,10 +32,22 @@
 </template>
 
 <script lang="tsx">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "SearchBar",
+  emits: {
+    "update:modelValue": null,
+    input: null,
+  },
+  props: {
+    modelValue: {
+      type: String as PropType<string>,
+      required: false,
+      default: "",
+    },
+  },
+  // setup() {},
 });
 </script>
 
