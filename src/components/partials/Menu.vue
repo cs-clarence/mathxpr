@@ -3,17 +3,17 @@
     <search-bar v-model="searchText" @input="updateResults" />
     <div class="container mx-auto flex flex-col my-6 items-center">
       <transition-group name="list" appear>
-        <p
-          v-for="(item, index) of searchResults"
-          :key="index"
-          class="m-1 text-lg text-white rounded-full py-2 px-3"
-          @click="$emit('select')"
-          :style="{ backgroundColor: 'rgba(0, 0, 0, 0.25)' }"
-        >
+        <template v-for="(item, index) of searchResults" :key="index">
           <router-link :to="`/solvers/${item.path}`">
-            {{ item.solverName }}
+            <p
+              class="m-1 text-lg text-white rounded-full py-2 px-3"
+              @click="$emit('select')"
+              :style="{ backgroundColor: 'rgba(0, 0, 0, 0.25)' }"
+            >
+              {{ item.solverName }}
+            </p>
           </router-link>
-        </p>
+        </template>
       </transition-group>
     </div>
   </div>
