@@ -2,6 +2,8 @@
   <div class="bg-purple-400 h-16">
     <div class="container mx-auto flex flex-row justify-between">
       <logo></logo>
+      <search-bar class="hidden sm:inline-block h-12 w-96"></search-bar>
+
       <div class="container fixed h-screen mx-auto z-10 pointer-events-none">
         <div
           id="menu-button-container"
@@ -9,7 +11,7 @@
           :class="{ menuOpen }"
         >
           <menu-button
-            class="p-3 w-16 h-16"
+            class="p-3 w-16 h-16 sm:hidden"
             :open="menuOpen"
             @open="$emit('menuOpen', !menuOpen)"
           ></menu-button>
@@ -23,10 +25,11 @@
 import { defineComponent, PropType } from "vue";
 import MenuButton from "@/components/partials/MenuButton.vue";
 import Logo from "@/components/partials/Logo.vue";
+import SearchBar from "@/components/partials/SearchBar.vue";
 
 export default defineComponent({
   name: "Header",
-  components: { Logo, MenuButton },
+  components: { Logo, MenuButton, SearchBar },
   emit: {
     menuOpen: null,
   },

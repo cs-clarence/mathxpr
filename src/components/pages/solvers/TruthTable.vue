@@ -12,6 +12,7 @@
         placeholder="Statement"
         name="statement"
         class="w-full ph-center text-center"
+        autocomplete="off"
       />
       <button>GENERATE TABLE</button>
       <table>
@@ -52,7 +53,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "TruthTableSolver",
+  name: "TruthTable",
 });
 </script>
 

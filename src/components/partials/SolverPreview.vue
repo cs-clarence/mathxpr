@@ -23,15 +23,17 @@
 
       <div
         class="
-      bg-white h-6 md:h-10 flex flex-col justify-center text-xs sm:text-sm md:text-base
+      bg-white flex flex-col justify-center text-xs 
+      sm:text-sm md:text-base
       text-center absolute bottom-0 w-full sm:w-max p-3 sm:rounded-tr-md shadow-xl
       opacity-50 sm:opacity-100
+      overflow-hidden overflow-ellipsis uppercase
       "
         v-if="$slots.default"
       >
-        <span class="uppercase">
-          <slot></slot>
-        </span>
+        <!-- <span class="uppercase"> -->
+        <slot></slot>
+        <!-- </span> -->
       </div>
     </router-link>
   </div>
@@ -76,13 +78,12 @@ export default defineComponent({
 @screen sm {
   .effect {
     border-color: transparent;
-
+    border-width: 8px;
     transition: border-color 0.25s ease-in-out, transform 0.25s ease-in-out;
   }
 
   .effect:hover {
     @apply border-purple-400;
-    border-width: 8px;
     border-style: solid;
     transform: scale(1.025);
   }

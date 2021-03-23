@@ -50,7 +50,7 @@ import { defineComponent, ref, reactive } from "vue";
 import { headers } from "./apportionment-methods";
 export default defineComponent({
   components: { DataTable },
-  name: "ApportionmentSolver",
+  name: "Apportionment",
   setup() {
     const option = ref("hamilton");
     const nSeats = ref("0");

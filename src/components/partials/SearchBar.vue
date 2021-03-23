@@ -1,12 +1,13 @@
 <template>
   <div
     class="
-    background sm:container rounded-full m-2 overflow-hidden 
-    focus-within:border-purple-300 border-4 mx-4 sm:mx-auto
+    background rounded-full m-2 overflow-hidden 
+    border-transparent
+    focus-within:border-purple-300 border-4 mx-4
     "
   >
     <form
-      class="p-3 flex flex-row justify-center items-center text-base"
+      class="p-3 flex flex-row justify-center items-center text-base h-full"
       @submit.prevent=""
     >
       <label for="search-bar">
